@@ -2060,7 +2060,6 @@
     )
   )
 
-
   (junction (at 38.1 50.8) (diameter 1.016) (color 0 0 0 0))
   (junction (at 39.37 172.72) (diameter 1.016) (color 0 0 0 0))
   (junction (at 43.18 39.37) (diameter 1.016) (color 0 0 0 0))
@@ -3945,7 +3944,7 @@
   (symbol (lib_id "Device:R_Small") (at 173.99 109.22 270) (mirror x) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-00005fb532b0)
-    (property "Reference" "R8" (id 0) (at 173.99 104.242 90))
+    (property "Reference" "R7" (id 0) (at 173.99 104.242 90))
     (property "Value" "100" (id 1) (at 173.99 106.553 90))
     (property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" (id 2) (at 173.99 109.22 0)
       (effects (font (size 1.27 1.27)) hide)
@@ -3998,7 +3997,7 @@
   (symbol (lib_id "Device:R_Small") (at 245.11 138.43 0) (mirror y) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-00005faf9a8f)
-    (property "Reference" "R7" (id 0) (at 246.609 137.262 0)
+    (property "Reference" "R6" (id 0) (at 246.609 137.262 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "3.9k" (id 1) (at 246.609 139.573 0)
@@ -5556,10 +5555,10 @@
       (reference "R5") (unit 1) (value "2.49k") (footprint "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder")
     )
     (path "/00000000-0000-0000-0000-00005faf9a8f"
-      (reference "R7") (unit 1) (value "3.9k") (footprint "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder")
+      (reference "R6") (unit 1) (value "3.9k") (footprint "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder")
     )
     (path "/00000000-0000-0000-0000-00005fb532b0"
-      (reference "R8") (unit 1) (value "100") (footprint "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder")
+      (reference "R7") (unit 1) (value "100") (footprint "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder")
     )
     (path "/00000000-0000-0000-0000-00005f8da76e"
       (reference "SW1") (unit 1) (value "JS202011JCQN") (footprint "numpad:SW_DPDT_CK_JS202011JCQN")
