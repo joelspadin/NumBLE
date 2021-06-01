@@ -4,6 +4,12 @@
 
   (paper "A4")
 
+  (title_block
+    (title "NumBLE Wireless Numpad")
+    (date "2021-05-31")
+    (rev "1.0")
+  )
+
   (lib_symbols
     (symbol "Battery_Management:MAX17263xxTE" (in_bom yes) (on_board yes)
       (property "Reference" "U" (id 0) (at 2.54 17.78 0)
