@@ -31,7 +31,7 @@ NumBLE runs [ZMK Firmware](https://zmkfirmware.dev/). The [zmk-config](zmk-confi
 folder holds the source files for the firmware. To customize the keymap, fork
 this repo and edit [numble.keymap](zmk-config/boards/arm/numble/numble.keymap).
 After pushing changes to GitHub, it will automatically build the new firmware
-for you. Check the [actions](actions) tab for the build results.
+for you. Check the "Actions" tab above for the build results.
 
 There are other firmwares that can run on an nRF52, and I will be happy to
 answer questions on setting them up for NumBLE, but I do not plan to personally
@@ -43,12 +43,6 @@ The bootloader included in the releases does not contain the SoftDevice, as
 Zephyr does not need it. If you'd like to run firmware that requires the
 SoftDevice, you can either compile the bootloader yourself, or let me know and I
 can include multiple versions of the bootloader in releases.
-
-## More Renders
-
-![Battery compartment](case/renders/Battery.png)
-
-![Bottom half](case/renders/Bottom.png)
 
 ## Status
 
@@ -62,6 +56,12 @@ Some parts of the hardware have not yet been fully tested.
 | Encoder                           | Untested                                                |
 | Battery reporting with fuel gauge | Partially tested, requires driver updates in Zephyr 2.6 |
 | Voltage-based battery reporting   | Software work in progress                               |
+
+## More Renders
+
+![Battery compartment](case/renders/Battery.png)
+
+![Bottom half](case/renders/Bottom.png)
 
 ## Credits
 
