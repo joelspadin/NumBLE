@@ -1,0 +1,66 @@
+name: Build
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    container:
+      image: zmkfirmware/zmk-build-arm:2.4
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - board: numble
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Cache west modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-zephyr-modules
+        with:
+          path: |
+            bootloader/
+            modules/
+            tools/
+            zephyr/
+            zmk/
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('zmk-config/west.yml') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+        timeout-minutes: 2
+        continue-on-error: true
+      - name: Initialize workspace (west init)
+        run: west init -l zmk-config
+      - name: Update modules (west update)
+        run: west update
+      - name: Export Zephyr CMake package (west zephyr-export)
+        run: west zephyr-export
+      - name: Prepare variables
+        id: variables
+        run: |
+          if [ -n "${{ matrix.shield }}" ]; then
+            SHIELD_ARG="-DSHIELD=${{ matrix.shield }}"
+            ARTIFACT_NAME="${{ matrix.shield }}-${{ matrix.board }}-zmk"
+          else
+            SHIELD_ARG=
+            ARTIFACT_NAME="${{ matrix.board }}-zmk"
+          fi
+
+          echo ::set-output name=shield-arg::${SHIELD_ARG}
+          echo ::set-output name=artifact-name::${ARTIFACT_NAME}
+      - name: Build (west build)
+        run: west build -s zmk/app -b ${{ matrix.board }} -- ${{ steps.variables.outputs.shield-arg }} -DZMK_CONFIG="${GITHUB_WORKSPACE}/zmk-config"
+      - name: Generated DTS file
+        if: always()
+        run: cat -n build/zephyr/${{ matrix.board }}.dts.pre.tmp
+      - name: Archive artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: "${{ steps.variables.outputs.artifact-name }}"
+          path: |
+            build/zephyr/zmk.hex
+            build/zephyr/zmk.uf2

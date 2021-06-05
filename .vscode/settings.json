@@ -1,0 +1,13 @@
+{
+  "editor.formatOnSave": true,
+  "files.associations": {
+    "*.h": "c",
+    "*_defconfig": "kconfig"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}
