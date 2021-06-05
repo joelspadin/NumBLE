@@ -59,6 +59,7 @@ jobs:
         run: cat -n build/zephyr/${{ matrix.board }}.dts.pre.tmp
       - name: Rename artifacts
         run: |
+          mkdir build/artifacts
           [ -f build/zephyr/zmk.hex ] && cp build/zephyr/zmk.hex "build/artifacts/${{ steps.variables.outputs.artifact-name }}.hex"
           [ -f build/zephyr/zmk.uf2 ] && cp build/zephyr/zmk.uf2 "build/artifacts/${{ steps.variables.outputs.artifact-name }}.uf2"
       - name: Archive artifacts
