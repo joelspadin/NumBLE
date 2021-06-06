@@ -6,17 +6,21 @@ It supports 21-key, 22-key, and 24-key layouts, and the top-left key can be
 replaced with a rotary encoder. It is powered by up to an 1200 mAh Li-Po battery
 and supports USB-C for charging and wired operation.
 
+This is a DIY project and is not currently sold anywhere.
+[Check the wiki](https://github.com/joelspadin/NumBLE/wiki) for instructions on
+how to build one.
+
 ![Numpad render](case/renders/NumBLE.png)
 
 ## Hardware
 
 The PCB is hand-solderable, though it uses many small parts which are difficult
 to solder by hand. It supports an optional fuel gauge IC, which provides more
-accurate battery status but requires reflow soldering. The [pcb](pcb) folder
+accurate battery status but requires reflow soldering. The [pcb folder](pcb)
 contains a [KiCad](https://www.kicad.org/) project (requires KiCad 5.99 nightly
 builds).
 
-The [case](case) folder contains the design files for the case and plate. The
+The [case folder](case) contains the design files for the case and plate. The
 case is 3D printed in two parts, and the plate is attached to the bottom with
 four bolts into threaded inserts. The top attaches to the bottom with magnets
 glued into both halves.
@@ -27,17 +31,17 @@ and will charge the battery regardless of the position of the power switch.
 
 ## Software
 
-NumBLE runs [ZMK Firmware](https://zmkfirmware.dev/). The [zmk-config](zmk-config)
-folder holds the source files for the firmware. To customize the keymap, fork
-this repo and edit [numble.keymap](zmk-config/boards/arm/numble/numble.keymap).
+NumBLE runs [ZMK Firmware](https://zmkfirmware.dev/). The [zmk-config folder](zmk-config)
+holds the source files for the firmware. To customize the keymap, fork this repo
+and edit [numble.keymap](zmk-config/boards/arm/numble/numble.keymap).
 After pushing changes to GitHub, it will automatically build the new firmware
 for you. Check the "Actions" tab above for the build results.
+
+The bootloader is built with [my fork of Adafruit's nRF52 bootloader](https://github.com/joelspadin/Adafruit_nRF52_Bootloader).
 
 There are other firmwares that can run on an nRF52, and I will be happy to
 answer questions on setting them up for NumBLE, but I do not plan to personally
 support them.
-
-The bootloader is built with [my fork of Adafruit's nRF52 bootloader](https://github.com/joelspadin/Adafruit_nRF52_Bootloader).
 
 The bootloader included in the releases does not contain the SoftDevice, as
 Zephyr does not need it. If you'd like to run firmware that requires the
