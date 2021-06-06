@@ -1,6 +1,14 @@
 name: Build
 
-on: [push, pull_request, workflow_dispatch]
+on:
+  push:
+    paths:
+      - ".github/workflows/build.yml"
+      - "zmk-config/**"
+  push:
+    pull_request:
+      - ".github/workflows/build.yml"
+      - "zmk-config/**"
 
 jobs:
   build:
