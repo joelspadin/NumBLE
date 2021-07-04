@@ -5,8 +5,8 @@ on:
     paths:
       - ".github/workflows/build.yml"
       - "zmk-config/**"
-  push:
-    pull_request:
+  pull_request:
+    paths:
       - ".github/workflows/build.yml"
       - "zmk-config/**"
 
