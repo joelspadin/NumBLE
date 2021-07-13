@@ -49,7 +49,7 @@ jobs:
         timeout-minutes: 2
         continue-on-error: true
       - name: Initialize workspace (west init)
-        run: west init -l $${{ env.config-path }}
+        run: west init -l ${{ env.config-path }}
       - name: Update modules (west update)
         run: west update
       - name: Export Zephyr CMake package (west zephyr-export)
