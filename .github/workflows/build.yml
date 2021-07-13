@@ -7,11 +7,11 @@ on:
   push:
     paths:
       - ".github/workflows/build.yml"
-      - "${{ env.config-path }}/**"
+      - "zmk-config/**"
   pull_request:
     paths:
       - ".github/workflows/build.yml"
-      - "${{ env.config-path }}/**"
+      - "zmk-config/**"
 
 jobs:
   build:
