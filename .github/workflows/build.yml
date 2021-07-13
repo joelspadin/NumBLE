@@ -1,14 +1,17 @@
 name: Build
 
+env:
+  config-path: zmk-config
+
 on:
   push:
     paths:
       - ".github/workflows/build.yml"
-      - "zmk-config/**"
+      - "${{ env.config-path }}/**"
   pull_request:
     paths:
       - ".github/workflows/build.yml"
-      - "zmk-config/**"
+      - "${{ env.config-path }}/**"
 
 jobs:
   build:
@@ -18,6 +21,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        # List the firmware to build here. Each item use the following properties.
+        #  board: (required) the board to build.
+        #  shield: (optional) the shield to build. Omit for a standalone board.
+        #  cmake-args: (optional) extra arguments to pass to CMake as a string.
         include:
           - board: numble
     steps:
@@ -34,7 +41,7 @@ jobs:
             tools/
             zephyr/
             zmk/
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('zmk-config/west.yml') }}
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('${{ env.config-path }}/west.yml') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
@@ -42,7 +49,7 @@ jobs:
         timeout-minutes: 2
         continue-on-error: true
       - name: Initialize workspace (west init)
-        run: west init -l zmk-config
+        run: west init -l $${{ env.config-path }}
       - name: Update modules (west update)
         run: west update
       - name: Export Zephyr CMake package (west zephyr-export)
@@ -61,7 +68,11 @@ jobs:
           echo ::set-output name=shield-arg::${SHIELD_ARG}
           echo ::set-output name=artifact-name::${ARTIFACT_NAME}
       - name: Build (west build)
-        run: west build -s zmk/app -b ${{ matrix.board }} -- ${{ steps.variables.outputs.shield-arg }} -DZMK_CONFIG="${GITHUB_WORKSPACE}/zmk-config"
+        run: |
+          west build -s zmk/app -b ${{ matrix.board }} -- \
+          ${{ steps.variables.outputs.shield-arg }} \
+          -DZMK_CONFIG="${GITHUB_WORKSPACE}/${{ env.config-path }}" \
+          ${{ matrix.cmake-args }}
       - name: Generated DTS file
         if: always()
         run: cat -n build/zephyr/${{ matrix.board }}.dts.pre.tmp
