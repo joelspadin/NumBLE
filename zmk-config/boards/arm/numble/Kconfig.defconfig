@@ -24,4 +24,7 @@ config ZMK_BLE
 config ZMK_USB
     default y
 
+config ZMK_BATTERY_NRF_VDDH
+    default y
+
 endif # BOARD_NUMBLE

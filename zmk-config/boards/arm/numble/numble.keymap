@@ -18,6 +18,8 @@
         //   &transform_numpad_22 - 22-key numpad
         //   &transform_macropad  - 24-key (4x6) macropad
         zmk,matrix_transform = &transform_numpad_21;
+        // Uncomment to enable fuel gauge
+        // zmk,battery = &fuel_gauge;
     };
 
     keymap {

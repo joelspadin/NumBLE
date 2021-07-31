@@ -59,7 +59,7 @@ Some parts of the hardware have not yet been fully tested.
 | 24-key layout                     | Untested                                                |
 | Encoder                           | Untested                                                |
 | Battery reporting with fuel gauge | Partially tested, requires driver updates in Zephyr 2.6 |
-| Voltage-based battery reporting   | Software work in progress                               |
+| Voltage-based battery reporting   | Working                                                 |
 
 ## More Renders
 
