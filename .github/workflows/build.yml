@@ -6,10 +6,12 @@ env:
 on:
   push:
     paths:
+      - build.yaml
       - ".github/workflows/build.yml"
       - "zmk-config/**"
   pull_request:
     paths:
+      - build.yaml
       - ".github/workflows/build.yml"
       - "zmk-config/**"
   workflow_dispatch:
