@@ -65,3 +65,7 @@
 //     status = "okay";
 // };
 
+&fuel_gauge {
+    // Your battery capacity in mAh
+    design-capacity = <1200>;
+};
