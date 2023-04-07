@@ -8,6 +8,8 @@
 #include <nordic/nrf52840_qiaa.dtsi>
 #include <dt-bindings/zmk/matrix_transform.h>
 
+#include "numble-pinctrl.dtsi"
+
 / {
     model = "NumBLE";
     compatible = "spadin,numble";
@@ -24,7 +26,6 @@
 
     kscan0: kscan {
         compatible = "zmk,kscan-gpio-matrix";
-        label = "KSCAN";
 
         diode-direction = "col2row";
         col-gpios
@@ -131,12 +132,13 @@
 &i2c0 {
     compatible = "nordic,nrf-twi";
     status = "okay";
-    sda-pin = <(32 + 9)>;
-    scl-pin = <5>;
+
+    pinctrl-0 = <&i2c0_default>;
+    pinctrl-1 = <&i2c0_sleep>;
+    pinctrl-names = "default", "sleep";
 
     fuel_gauge: max17055@36 {
         compatible = "maxim,max17055";
-        label = "max17055";
         reg = <0x36>;
 
         design-capacity = <1200>;
@@ -154,7 +156,6 @@
 
     cdc_acm_uart: cdc_acm_uart {
         compatible = "zephyr,cdc-acm-uart";
-        label = "CDC_ACM_0";
     };
 };
 
@@ -166,10 +167,6 @@
         #address-cells = <1>;
         #size-cells = <1>;
 
-        sd_partition: partition@0 {
-            label = "softdevice";
-            reg = <0x00000000 0x00026000>;
-        };
         code_partition: partition@1000 {
             label = "code_partition";
             reg = <0x00001000 0x000d3000>;

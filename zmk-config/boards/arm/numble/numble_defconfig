@@ -5,11 +5,9 @@ CONFIG_SOC_NRF52840_QIAA=y
 CONFIG_BOARD_NUMBLE=y
 CONFIG_BUILD_OUTPUT_UF2=y
 
-# Enable MPU
 CONFIG_ARM_MPU=y
-
-# Enable GPIO
 CONFIG_GPIO=y
+CONFIG_PINCTRL=y
 
 # Place application at &code_partition address
 CONFIG_USE_DT_CODE_PARTITION=y
@@ -24,3 +22,6 @@ CONFIG_FLASH_MAP=y
 
 # nRF52840 can handle faster USB polling
 CONFIG_USB_HID_POLL_INTERVAL_MS=1
+
+# Fix battery reporting on Windows
+CONFIG_BT_GATT_ENFORCE_SUBSCRIPTION=n

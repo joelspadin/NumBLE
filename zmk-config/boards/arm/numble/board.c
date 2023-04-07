@@ -4,12 +4,11 @@
  * SPDX-License-Identifier: MIT
  */
 
-#include <kernel.h>
-#include <init.h>
+#include <zephyr/kernel.h>
+#include <zephyr/init.h>
 #include <hal/nrf_power.h>
 
-static int board_numble_init(const struct device *dev)
-{
+static int board_numble_init(const struct device *dev) {
     ARG_UNUSED(dev);
 
     const uint32_t key = irq_lock();
