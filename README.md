@@ -4,9 +4,10 @@ NumBLE is a Bluetooth numpad with 3D printed case, based on the
 [Nordic nNRF52840 SoC](https://www.nordicsemi.com/Products/Low-power-short-range-wireless/nRF52840).
 It supports 21-key, 22-key, and 24-key layouts, and the top-left key can be
 replaced with a rotary encoder. It is powered by up to an 1200 mAh Li-Po battery
+with a 2-pin JST Ph connector (such as those sold by [Adafruit](https://www.adafruit.com/category/574))
 and supports USB-C for charging and wired operation.
 
-This is a DIY project and is not currently sold anywhere.
+This is a DIY project and is not sold anywhere.
 [Check the wiki](https://github.com/joelspadin/NumBLE/wiki) for instructions on
 how to build one.
 
@@ -31,11 +32,22 @@ and will charge the battery regardless of the position of the power switch.
 
 ## Software
 
-NumBLE runs [ZMK Firmware](https://zmkfirmware.dev/). The [zmk-config folder](zmk-config)
-holds the source files for the firmware. To customize the keymap, fork this repo
-and edit [numble.keymap](zmk-config/boards/arm/numble/numble.keymap).
-After pushing changes to GitHub, it will automatically build the new firmware
-for you. Check the "Actions" tab above for the build results.
+NumBLE runs [ZMK Firmware](https://zmkfirmware.dev/). The [config folder](config)
+holds the source files for the firmware. To customize the keymap, create a new
+repo using the [ZMK Config Template](https://github.com/zmkfirmware/unified-zmk-config-template),
+then edit the `config/west.yml` file to include this repo as an additional module.
+
+Next, edit the `build.yaml` file and add
+
+```ymal
+include:
+  - board: numble
+  - board: numble
+    shield: settings_reset
+```
+
+Commit and push the changes to GitHub, and it will automatically build the new
+firmware for you. Check the "Actions" tab above for the build results.
 
 The bootloader is built with [my fork of Adafruit's nRF52 bootloader](https://github.com/joelspadin/Adafruit_nRF52_Bootloader).
 

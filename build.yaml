@@ -1,2 +1,4 @@
 include:
   - board: numble
+  - board: numble
+    shield: settings_reset

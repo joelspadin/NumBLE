@@ -4,4 +4,4 @@ jobs:
   build:
     uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
     with:
-      config_path: zmk-config
+      config_path: config
