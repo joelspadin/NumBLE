@@ -91,7 +91,6 @@
 
     encoder: encoder {
         compatible = "alps,ec11";
-        label = "ENCODER";
         a-gpios = <&gpio0 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         b-gpios = <&gpio0 24 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         resolution = <2>;
@@ -102,14 +101,12 @@
         compatible = "gpio-leds";
 
         status_led: led_0 {
-            label = "STATUS LED";
             gpios = <&gpio0 9 GPIO_ACTIVE_HIGH>;
         };
     };
 
     vbatt: vbatt {
         compatible = "zmk,battery-nrf-vddh";
-        label = "BATTERY";
     };
 };
 
@@ -168,7 +165,6 @@
         #size-cells = <1>;
 
         code_partition: partition@1000 {
-            label = "code_partition";
             reg = <0x00001000 0x000d3000>;
         };
 
@@ -177,12 +173,10 @@
 
         // Storage partition will be used by FCB/LittleFS/NVS if enabled.
         storage_partition: partition@d4000 {
-            label = "storage";
             reg = <0x000d4000 0x00020000>;
         };
 
         boot_partition: partition@f4000 {
-            label = "adafruit_boot";
             reg = <0x000f4000 0x0000c000>;
         };
     };
